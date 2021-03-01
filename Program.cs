@@ -44,20 +44,29 @@ void Main()
 void AskForNumber(string question)
 {
     Console.Write($"{question}");
-    string answer = Console.ReadLine();
+    string Answer = Console.ReadLine();
     string SecretNumber = "42";
 
-    int num = 1;
-
-    while (num < 4)
-        if (answer == SecretNumber)
+    if (Answer == SecretNumber)
+    {
+        Console.WriteLine("You guessed it!");
+    }
+    else
+    {
+        for (int count = 0; count < 4; count++)
         {
-            Console.WriteLine("You guessed it!");
-        }
-        else
-        {
-            Console.WriteLine($"That's not quite right. Try again");
-        }
-    num++;
+            if (Answer != SecretNumber)
+            {
+                Console.WriteLine($"That's not quite right. Try again");
+                Console.Write($"{question}");
+                Console.ReadLine();
+            }
+            else if (Answer == SecretNumber)
+            {
+                Console.WriteLine($"What the");
 
+            }
+
+        }
+    }
 };
