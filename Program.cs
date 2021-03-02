@@ -66,9 +66,18 @@ void AskForNumber(string question)
 
         if (Answer != SecretNumber)
         {
-            GuessLimit--;
-            Console.WriteLine($"You got: {GuessLimit} guesses left. Be smart about it!");
-            GuessCount++;
+            if (Answer > SecretNumber)
+            {
+                GuessLimit--;
+                Console.WriteLine($"You got: {GuessLimit} guesses left, and your answer is too high.\nBe smart about it!");
+                GuessCount++;
+            }
+            else if (Answer < SecretNumber)
+            {
+                GuessLimit--;
+                Console.WriteLine($"You got: {GuessLimit} guesses left, and your answer is too low.\nBe smart about it!");
+                GuessCount++;
+            }
 
         }
         else if (Answer == SecretNumber)
