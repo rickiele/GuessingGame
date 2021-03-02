@@ -31,53 +31,6 @@
 
 
 // Phase 3
-// using System;
-
-// Main();
-
-// void Main()
-// {
-//     // Change colors
-//     Console.Title = "Guessing Game";
-//     Console.ForegroundColor = ConsoleColor.Green;
-
-//     // Say something to user, and ask a question
-//     Console.WriteLine("Guess the secret number...");
-//     AskForNumber("What's your guess? ");
-// };
-
-// // Function to ask question
-// void AskForNumber(string question)
-// {
-//     Console.Write($"{question}");
-//     int Answer = Convert.ToInt32(Console.ReadLine());
-//     int SecretNumber = 42;
-
-//     if (Answer == SecretNumber)
-//     {
-//         Console.WriteLine("You guessed it!");
-//     }
-//     else
-//     {
-//         for (int count = 0; count < 4; count++)
-//         {
-//             if (Answer != SecretNumber)
-//             {
-//                 Console.WriteLine($"That's not quite right. Try again");
-//                 Console.Write($"{question}");
-//                 Console.ReadLine();
-//             }
-//             else if (Answer == SecretNumber)
-//             {
-//                 Console.WriteLine($"What the");
-
-//             }
-
-//         }
-//     }
-// };
-
-// Phase 3
 using System;
 
 Main();
@@ -93,23 +46,37 @@ void Main()
     AskForNumber("What's your guess? ");
 };
 
+
 // Function to ask question
 void AskForNumber(string question)
 {
-    Console.Write($"{question}");
-    int Answer = Convert.ToInt32(Console.ReadLine());
-    int SecretNumber = 42;
+    // Generate a random number
+    Random Number = new Random();
+    int SecretNumber = Number.Next(1, 100);
 
-    if (Answer == SecretNumber)
+    // int SecretNumber = 42;
+    int GuessLimit = 4;
+    int GuessCount = 1;
+
+    while (GuessLimit > 0)
     {
-        Console.WriteLine("You guessed it!");
-    }
-    else
-    {
-        for (int GuessCount = 0; GuessCount < 4; GuessCount++)
+
+        Console.Write($"{question}");
+        int Answer = Convert.ToInt32(Console.ReadLine());
+
+        if (Answer != SecretNumber)
         {
-            Console.WriteLine($"That's not quite right. Try again");
-            Console.ReadLine();
+            GuessLimit--;
+            Console.WriteLine($"You got: {GuessLimit} guesses left. Be smart about it!");
+            GuessCount++;
+
+        }
+        else if (Answer == SecretNumber)
+        {
+            Console.WriteLine($"You guessed it! Only took 'bout {GuessCount} times.");
+            return;
         }
     }
+
 };
+
