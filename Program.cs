@@ -1,8 +1,6 @@
 ﻿// Purpose: Write a console program in C# that invites the user to guess a number.
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
 
 Main();
 
@@ -38,7 +36,7 @@ void AskForDifficulty(string DifficultyQuestion)
     else if (ChosenLevel == 4)
     {
         // Largest possible value of Int32
-        AskForNumber(Int32.MaxValue);
+        YouCheater(Int32.MaxValue);
     };
 }
 
@@ -83,3 +81,40 @@ void AskForNumber(int GuessLimit)
 
 };
 
+void YouCheater(int GuessLimit)
+{
+    // Generate a random number
+    Random Number = new Random();
+    int SecretNumber = Number.Next(1, 100);
+
+    int GuessCount = 1;
+
+    while (GuessLimit > 0)
+    {
+
+        Console.Write("Be smart about it and guess the number! ");
+        int Answer = Convert.ToInt32(Console.ReadLine());
+
+        if (Answer != SecretNumber)
+        {
+            if (Answer > SecretNumber)
+            {
+                GuessLimit--;
+                Console.WriteLine($"Try Again! Your answer is too high.\n");
+                GuessCount++;
+            }
+            else if (Answer < SecretNumber)
+            {
+                GuessLimit--;
+                Console.WriteLine($"Try Again! Your answer is too low.\n");
+                GuessCount++;
+            }
+
+        }
+        else if (Answer == SecretNumber)
+        {
+            Console.WriteLine($"You guessed it! Only took 'bout {GuessCount} times.");
+            return;
+        }
+    }
+}
