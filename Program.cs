@@ -14,10 +14,10 @@ void Main()
 
     // Say something to user, and ask a question
     Console.WriteLine("Welcome to the Guessing Game!");
-    AskForDifficulty("What difficulty do you want to play on?\n[1] Easy\n[2] Medium\n[3] Hard ---- ");
+    AskForDifficulty("What difficulty do you want to play on?\n[1] Easy\n[2] Medium\n[3] Hard\n[4] Cheater!!!\nEnter difficulty level: ");
 };
 
-// Difficulty Levels
+// Function to determine difficulty chosen
 void AskForDifficulty(string DifficultyQuestion)
 {
     Console.Write($"{DifficultyQuestion}");
@@ -34,6 +34,11 @@ void AskForDifficulty(string DifficultyQuestion)
     else if (ChosenLevel == 3)
     {
         AskForNumber(4);
+    }
+    else if (ChosenLevel == 4)
+    {
+        // Largest possible value of Int32
+        AskForNumber(Int32.MaxValue);
     };
 }
 
@@ -45,14 +50,12 @@ void AskForNumber(int GuessLimit)
     Random Number = new Random();
     int SecretNumber = Number.Next(1, 100);
 
-    // int SecretNumber = 42;
-    // int GuessLimit = 4;
     int GuessCount = 1;
 
     while (GuessLimit > 0)
     {
 
-        Console.Write("Guess the number! ");
+        Console.Write("Be smart about it and guess the number! ");
         int Answer = Convert.ToInt32(Console.ReadLine());
 
         if (Answer != SecretNumber)
@@ -60,13 +63,13 @@ void AskForNumber(int GuessLimit)
             if (Answer > SecretNumber)
             {
                 GuessLimit--;
-                Console.WriteLine($"You got: {GuessLimit} guesses left, and your answer is too high.\nBe smart about it!");
+                Console.WriteLine($"You got: {GuessLimit} guesses left, and your answer is too high.\n");
                 GuessCount++;
             }
             else if (Answer < SecretNumber)
             {
                 GuessLimit--;
-                Console.WriteLine($"You got: {GuessLimit} guesses left, and your answer is too low.\nBe smart about it!");
+                Console.WriteLine($"You got: {GuessLimit} guesses left, and your answer is too low.\n");
                 GuessCount++;
             }
 
